@@ -12,9 +12,7 @@
         android:icon="@drawable/center_icon"
         android:title="@string/center_menu" />
 
-    <item
-        android:id="@+id/petSpeciesFragment"
-        android:enabled="true"
-        android:icon="@drawable/species_icon"
-        android:title="@string/species_menu" />
+
+
+
 </menu>

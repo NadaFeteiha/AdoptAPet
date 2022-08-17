@@ -25,11 +25,7 @@
             app:destination="@id/petDetailsFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/petSpeciesFragment"
-        android:name="com.nadafeteiha.adoptapet.ui.petspecies.PetSpeciesFragment"
-        android:label="fragment_pet_species"
-        tools:layout="@layout/fragment_pet_species" />
+
 
     <fragment
         android:id="@+id/petDetailsFragment"
