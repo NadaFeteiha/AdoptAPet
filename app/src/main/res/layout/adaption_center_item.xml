@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="adaptionCenter"
+            type="com.nadafeteiha.adoptapet.data.domain.CenterDetails" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/pet_card"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/extra_small_margin"
+        app:cardBackgroundColor="?attr/colorOnPrimary"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:id="@+id/center_name_text"
+                style="@style/TextHeadLine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{adaptionCenter.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/phone_text"
+                style="@style/TextBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:drawablePadding="@dimen/small_padding"
+                android:gravity="center_vertical"
+                android:text="@{adaptionCenter.phone}"
+                android:visibility="@{adaptionCenter.phone == null?View.GONE : View.VISIBLE}"
+                app:drawableStartCompat="@drawable/phone_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/center_name_text" />
+
+            <TextView
+                android:id="@+id/email_text"
+                style="@style/TextBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:drawablePadding="@dimen/small_padding"
+                android:gravity="center_vertical"
+                android:text="@{adaptionCenter.email}"
+                android:visibility="@{adaptionCenter.email == null?View.GONE : View.VISIBLE}"
+                app:drawableStartCompat="@drawable/email_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_text" />
+
+            <TextView
+                android:id="@+id/location_text"
+                style="@style/TextBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:drawablePadding="@dimen/small_padding"
+                android:gravity="center_vertical"
+                android:text='@{adaptionCenter.city +", "+ adaptionCenter.state}'
+                app:drawableStartCompat="@drawable/map_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_text" />
+
+            <TextView
+                android:id="@+id/services_text"
+                style="@style/TextBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:drawablePadding="@dimen/small_padding"
+                android:gravity="center_vertical"
+                android:text="@{adaptionCenter.services}"
+                android:visibility="@{adaptionCenter.services.empty?View.GONE : View.VISIBLE}"
+                app:drawableStartCompat="@drawable/service_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location_text" />
+
+            <Button
+                android:id="@+id/available_pet_action"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/available_pet"
+                app:icon="@drawable/pet_icon"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/services_text" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

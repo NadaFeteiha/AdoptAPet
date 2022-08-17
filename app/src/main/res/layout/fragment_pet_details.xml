@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.nadafeteiha.adoptapet.util.ExtensionsKt" />
+
+        <variable
+            name="petDetails"
+            type="com.nadafeteiha.adoptapet.data.domain.PetDetails" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/colorOnBackground"
+            android:paddingBottom="@dimen/default_padding"
+            tools:context=".ui.PetDetailsFragment">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/pet_image"
+                petImage="@{petDetails.pic_url}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundImage" />
+
+            <TextView
+                android:id="@+id/pet_name"
+                style="@style/TextTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@{petDetails.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pet_image" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/breed_card"
+                style="@style/Widget.Material3.CardView.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                app:cardBackgroundColor="?attr/colorOnPrimary"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pet_name">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin">
+
+                    <TextView
+                        android:id="@+id/breed_text"
+                        style="@style/TextHeadLine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/breed"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/breed_name_text"
+                        style="@style/TextBody"
+                        petBreed="@{petDetails.species_breed.breed_name}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:drawablePadding="@dimen/small_padding"
+                        android:gravity="center_vertical"
+                        android:text="@{petDetails.species_breed.breed_name}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/breed_text" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/physical_characteristics_card"
+                style="@style/Widget.Material3.CardView.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                app:cardBackgroundColor="?attr/colorOnPrimary"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/breed_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin">
+
+                    <TextView
+                        android:id="@+id/physical_characteristics_text"
+                        style="@style/TextHeadLine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/physical_characteristics"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/age_text"
+                        style="@style/TextBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:drawablePadding="@dimen/small_padding"
+                        android:gravity="center_vertical"
+                        android:text="@{petDetails.age}"
+                        app:drawableStartCompat="@drawable/age_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/physical_characteristics_text" />
+
+                    <TextView
+                        android:id="@+id/sex_text"
+                        style="@style/TextBody"
+                        petSex="@{petDetails.sex}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:drawablePadding="@dimen/small_padding"
+                        android:gravity="center_vertical"
+                        android:text="@{petDetails.sex}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/age_text" />
+
+                    <TextView
+                        android:id="@+id/size_text"
+                        style="@style/TextBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:drawablePadding="@dimen/small_padding"
+                        android:gravity="center_vertical"
+                        android:text="@{petDetails.size_group}"
+                        app:drawableStartCompat="@drawable/size_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sex_text" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/description_card"
+                style="@style/Widget.Material3.CardView.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                app:cardBackgroundColor="?attr/colorOnPrimary"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/physical_characteristics_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin">
+
+                    <TextView
+                        android:id="@+id/description_text"
+                        style="@style/TextHeadLine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/description"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/pet_description_text"
+                        style="@style/TextBody"
+                        petDescription="@{petDetails.desc}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/description_text" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/location_card"
+                style="@style/Widget.Material3.CardView.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                app:cardBackgroundColor="?attr/colorOnPrimary"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin">
+
+                    <TextView
+                        android:id="@+id/location_text"
+                        style="@style/TextHeadLine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/location"
+                        app:layout_constraintEnd_toStartOf="@+id/go_map_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/center_name_text"
+                        style="@style/TextBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:text="@{petDetails.center.name}"
+                        app:layout_constraintEnd_toStartOf="@id/go_map_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/location_text" />
+
+                    <TextView
+                        android:id="@+id/center_location_text"
+                        style="@style/TextBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:text='@{petDetails.center.city+ ", " +petDetails.center.state}'
+                        app:layout_constraintEnd_toStartOf="@id/go_map_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/center_name_text" />
+
+                    <TextView
+                        android:id="@+id/go_map_text"
+                        style="@style/TextBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:gravity="center"
+                        android:text="@string/go_text"
+                        app:drawableTopCompat="@drawable/map_icon"
+                        android:drawablePadding="@dimen/small_padding"
+                        app:layout_constraintBottom_toBottomOf="@+id/center_location_text"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/location_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pet_navigation"
+    app:startDestination="@id/petFragment">
+
+    <fragment
+        android:id="@+id/adaptionCenterFragment"
+        android:name="com.nadafeteiha.adoptapet.ui.centers.AdaptionCenterFragment"
+        android:label="fragment_adaption_center"
+        tools:layout="@layout/fragment_adaption_center">
+        <action
+            android:id="@+id/action_adaptionCenterFragment_to_availablePetsFragment"
+            app:destination="@id/availablePetsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/petFragment"
+        android:name="com.nadafeteiha.adoptapet.ui.pet.PetFragment"
+        android:label="fragment_pet"
+        tools:layout="@layout/fragment_pet">
+        <action
+            android:id="@+id/action_petFragment_to_petDetailsFragment"
+            app:destination="@id/petDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/petSpeciesFragment"
+        android:name="com.nadafeteiha.adoptapet.ui.petspecies.PetSpeciesFragment"
+        android:label="fragment_pet_species"
+        tools:layout="@layout/fragment_pet_species" />
+
+    <fragment
+        android:id="@+id/petDetailsFragment"
+        android:name="com.nadafeteiha.adoptapet.ui.PetDetailsFragment"
+        android:label="fragment_pet_details"
+        tools:layout="@layout/fragment_pet_details">
+
+        <argument
+            android:name="pet"
+            app:argType="com.nadafeteiha.adoptapet.data.domain.PetDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/availablePetsFragment"
+        android:name="com.nadafeteiha.adoptapet.ui.centers.availablepets.AvailablePetsFragment"
+        android:label="fragment_available_pets"
+        tools:layout="@layout/fragment_available_pets">
+        <argument
+            android:name="center"
+            app:argType="com.nadafeteiha.adoptapet.data.domain.CenterDetails" />
+        <action
+            android:id="@+id/action_availablePetsFragment_to_petDetailsFragment"
+            app:destination="@id/petDetailsFragment"
+            app:popUpTo="@id/adaptionCenterFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/petFragment"
+        android:enabled="true"
+        android:icon="@drawable/pet_icon"
+        android:title="@string/pet_menu" />
+
+    <item
+        android:id="@+id/adaptionCenterFragment"
+        android:enabled="true"
+        android:icon="@drawable/center_icon"
+        android:title="@string/center_menu" />
+
+    <item
+        android:id="@+id/petSpeciesFragment"
+        android:enabled="true"
+        android:icon="@drawable/species_icon"
+        android:title="@string/species_menu" />
+</menu>

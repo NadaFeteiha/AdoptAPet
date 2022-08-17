@@ -1,0 +1,46 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AdoptAPet" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryVariant">@color/teal_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnBackground">@color/teal_light2</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/teal_light</item>
+    </style>
+
+    <style name="roundImage" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <!--          Text           -->
+    <style name="TextTitle" parent="TextAppearance.AppCompat.Display3">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="TextHeadLine" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="TextBody" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="Theme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/teal</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_adaptive_fore</item>
+        <item name="postSplashScreenTheme">@style/Theme.AdoptAPet</item>
+    </style>
+
+</resources>

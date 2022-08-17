@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Pet Adaption</string>
+    <string name="pet_details">%s . %s . %s</string>
+    <string name="female">Female</string>
+    <string name="cat">Cat</string>
+
+
+    <string name="physical_characteristics">Physical Characteristics</string>
+    <string name="breed">Breed</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="go_text">Go</string>
+    <string name="origin">Origin</string>
+    <string name="available_pet">See available pets</string>
+
+    <!--    menu     -->
+    <string name="pet_menu">Pets</string>
+    <string name="center_menu">Centers</string>
+    <string name="species_menu">Pet Species</string>
+    <string name="search_menu">Search</string>
+
+</resources>
