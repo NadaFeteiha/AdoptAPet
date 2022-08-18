@@ -12,7 +12,10 @@
         android:icon="@drawable/center_icon"
         android:title="@string/center_menu" />
 
-
-
+    <item
+        android:id="@+id/searchFragment"
+        android:enabled="true"
+        android:icon="@drawable/search_icon"
+        android:title="@string/search_menu" />
 
 </menu>
