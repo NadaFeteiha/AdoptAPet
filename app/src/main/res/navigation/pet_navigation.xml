@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/adaptionCenterFragment"
         android:name="com.nadafeteiha.adoptapet.ui.centers.AdaptionCenterFragment"
-        android:label="fragment_adaption_center"
+        android:label="@string/adaption_center_title"
         tools:layout="@layout/fragment_adaption_center">
         <action
             android:id="@+id/action_adaptionCenterFragment_to_availablePetsFragment"
@@ -18,18 +18,13 @@
     <fragment
         android:id="@+id/petFragment"
         android:name="com.nadafeteiha.adoptapet.ui.pet.PetFragment"
-        android:label="fragment_pet"
+        android:label="@string/pet_title"
         tools:layout="@layout/fragment_pet">
         <action
             android:id="@+id/action_petFragment_to_petDetailsFragment"
             app:destination="@id/petDetailsFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/petSpeciesFragment"
-        android:name="com.nadafeteiha.adoptapet.ui.petspecies.PetSpeciesFragment"
-        android:label="fragment_pet_species"
-        tools:layout="@layout/fragment_pet_species" />
 
     <fragment
         android:id="@+id/petDetailsFragment"
@@ -45,7 +40,7 @@
     <fragment
         android:id="@+id/availablePetsFragment"
         android:name="com.nadafeteiha.adoptapet.ui.centers.availablepets.AvailablePetsFragment"
-        android:label="fragment_available_pets"
+        android:label="@string/available_pets_title"
         tools:layout="@layout/fragment_available_pets">
         <argument
             android:name="center"
@@ -55,6 +50,15 @@
             app:destination="@id/petDetailsFragment"
             app:popUpTo="@id/adaptionCenterFragment"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.nadafeteiha.adoptapet.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_petDetailsFragment"
+            app:destination="@id/petDetailsFragment" />
     </fragment>
 
 </navigation>

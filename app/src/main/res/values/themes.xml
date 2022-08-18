@@ -37,6 +37,11 @@
         <item name="android:textColor">@color/dark_grey</item>
     </style>
 
+    <style name="TextBodyBold" parent="TextBody">
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="fontFamily">sans-serif-black</item>
+    </style>
+
     <style name="Theme.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/teal</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_adaptive_fore</item>

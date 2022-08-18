@@ -6,6 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Pet(
     val api_id: Int,
-    val id: Int,
     val name: String
 ) : Parcelable

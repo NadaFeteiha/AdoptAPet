@@ -8,7 +8,6 @@ data class CenterDetails(
     val api_id: Int,
     val city: String?,
     val email: String?,
-    val id: Int,
     val lat: Double,
     val lon: Double,
     val name: String?,
@@ -16,8 +15,5 @@ data class CenterDetails(
     val phone: String?,
     val services: String?,
     val species_breed: List<SpeciesBreed>?,
-    val state: String?,
-    val street: String?,
-    val type: String?,
-    val zipcode: String?
+    val state: String?
 ) : Parcelable

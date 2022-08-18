@@ -1,5 +1,6 @@
 package com.nadafeteiha.adoptapet.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -48,5 +49,16 @@ fun bindPetBreed(text: TextView, breed: String?) {
 fun bindDescription(text: TextView, description: String?) {
     description?.let {
         text.text = description.subSequence(0, description.indexOf("<"))
+    }
+}
+
+
+@BindingAdapter("petDescriptionVisibility")
+fun bindDescriptionVisibility(view: View, description: String?) {
+    description?.let {
+        val text = description.subSequence(0, description.indexOf("<"))
+        if (text.isNullOrBlank()){
+            view.visibility=View.GONE
+        }
     }
 }

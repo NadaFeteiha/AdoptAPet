@@ -49,7 +49,7 @@ class PetFragment : BaseFragment<FragmentPetBinding>(), PetAdapter.OnItemClickLi
                 status.data?.let { setData(it.petDetails) }
             }
             is NetworkStatus.Failure -> {
-                requireView().showSnackBar(status.message)
+                requireActivity().showSnackBar(status.message)
             }
         }
     }
