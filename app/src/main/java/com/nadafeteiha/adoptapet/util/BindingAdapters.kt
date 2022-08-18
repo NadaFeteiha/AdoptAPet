@@ -12,8 +12,8 @@ fun bindPetImage(image: ImageView, imageUrl: String?) {
     imageUrl?.let {
         Picasso.get()
             .load(imageUrl)
-//            .placeholder(R.drawable.loading_animation)
-//            .error(R.drawable.icon_weather)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.mipmap.ic_launcher_adaptive_fore)
             .resize(600, 400)
             .into(image)
     }
@@ -51,7 +51,6 @@ fun bindDescription(text: TextView, description: String?) {
         text.text = description.subSequence(0, description.indexOf("<"))
     }
 }
-
 
 @BindingAdapter("petDescriptionVisibility")
 fun bindDescriptionVisibility(view: View, description: String?) {

@@ -24,7 +24,7 @@ class CenterAdapter(private var itemListener: OnItemClickListener) :
         }
 
         override fun areContentsTheSame(oldItem: CenterDetails, newItem: CenterDetails): Boolean {
-            return oldItem.api_id == newItem.api_id
+            return oldItem.centerID == newItem.centerID
         }
     }
 
@@ -51,7 +51,7 @@ class CenterAdapter(private var itemListener: OnItemClickListener) :
         private fun setListeners(center: CenterDetails, itemListener: OnItemClickListener) {
             binding.apply {
                 phoneText.setOnClickListener {
-                    center.phone?.let { phoneNumber ->
+                    center.centerPhone?.let { phoneNumber ->
                         itemListener.onPhoneClick(phoneNumber)
                     }
                 }

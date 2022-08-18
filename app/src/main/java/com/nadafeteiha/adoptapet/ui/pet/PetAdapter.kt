@@ -21,7 +21,7 @@ class PetAdapter(private var itemListener: OnItemClickListener) :
         }
 
         override fun areContentsTheSame(oldItem: PetDetails, newItem: PetDetails): Boolean {
-            return oldItem.api_id == newItem.api_id
+            return oldItem.petID == newItem.petID
         }
     }
 

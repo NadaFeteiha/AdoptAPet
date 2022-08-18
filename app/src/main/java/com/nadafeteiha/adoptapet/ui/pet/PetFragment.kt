@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nadafeteiha.adoptapet.base.BaseFragment
-import com.nadafeteiha.adoptapet.data.domain.AdoptablePet
+import com.nadafeteiha.adoptapet.data.domain.AdoptablePetResponse
 import com.nadafeteiha.adoptapet.data.domain.PetDetails
 import com.nadafeteiha.adoptapet.data.network.NetworkStatus
 import com.nadafeteiha.adoptapet.databinding.FragmentPetBinding
@@ -22,25 +22,29 @@ class PetFragment : BaseFragment<FragmentPetBinding>(), PetAdapter.OnItemClickLi
     override val inflate: (LayoutInflater, ViewGroup?, Boolean) -> FragmentPetBinding =
         FragmentPetBinding::inflate
     private val petAdapter: PetAdapter by lazy { PetAdapter(this) }
-    private lateinit var flow: Flow<NetworkStatus<AdoptablePet>>
+    private lateinit var flow: Flow<NetworkStatus<AdoptablePetResponse>>
 
     override fun setup() {
+        flowInitialization()
+        flowCollector(flow)
+    }
+
+    private fun flowInitialization() {
         flow = flow {
             emit(NetworkStatus.Loading())
             emit(petService.getAllAdoptablePets())
         }.flowOn(Dispatchers.Default)
-        flowCollector(flow)
     }
 
-    private fun flowCollector(flow: Flow<NetworkStatus<AdoptablePet>>) {
+    private fun flowCollector(flow: Flow<NetworkStatus<AdoptablePetResponse>>) {
         lifecycleScope.launch {
             flow.collect { networkResult ->
-                checkNetworkResponse(networkResult)
+                changeUIDDependOnNetworkStatusResponse(networkResult)
             }
         }
     }
 
-    private fun checkNetworkResponse(status: NetworkStatus<AdoptablePet>) {
+    private fun changeUIDDependOnNetworkStatusResponse(status: NetworkStatus<AdoptablePetResponse>) {
         when (status) {
             is NetworkStatus.Loading -> {
                 setLoading()
@@ -55,13 +59,13 @@ class PetFragment : BaseFragment<FragmentPetBinding>(), PetAdapter.OnItemClickLi
     }
 
     private fun setData(petDetails: List<PetDetails>) {
-        setVisibilityForSuccess()
+        setVisibilityWhenSuccess()
         binding.petRecycler.layoutManager = GridLayoutManager(requireContext(), 1)
         binding.petRecycler.adapter = petAdapter
         petAdapter.submitList(petDetails)
     }
 
-    private fun setVisibilityForSuccess() {
+    private fun setVisibilityWhenSuccess() {
         binding.petRecycler.visibility = View.VISIBLE
         binding.loadingPetLottie.visibility = View.GONE
     }

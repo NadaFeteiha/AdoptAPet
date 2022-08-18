@@ -1,11 +1,13 @@
 package com.nadafeteiha.adoptapet.data.domain
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SpeciesBreed(
-    val api_id: Int,
-    val breed_name: String?,
-    val species_name: String?
+    @SerializedName("breed_name")
+    val breedName: String?,
+    @SerializedName("species_name")
+    val speciesName: String?
 ) : Parcelable

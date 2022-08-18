@@ -1,7 +1,7 @@
 package com.nadafeteiha.adoptapet.data.network
 
 import com.google.gson.Gson
-import com.nadafeteiha.adoptapet.data.domain.AdoptablePet
+import com.nadafeteiha.adoptapet.data.domain.AdoptablePetResponse
 import com.nadafeteiha.adoptapet.data.domain.AdoptionCenterResponse
 import com.nadafeteiha.adoptapet.data.domain.PetDetails
 import com.nadafeteiha.adoptapet.util.Constants
@@ -28,7 +28,7 @@ class PetAdaptionServices {
         return callBack(Constants.CENTER_END_POINT)
     }
 
-    fun getAllAdoptablePets(): NetworkStatus<AdoptablePet> {
+    fun getAllAdoptablePets(): NetworkStatus<AdoptablePetResponse> {
         return callBack(Constants.ADOPTABLE_PET_END_POINT)
     }
 
@@ -36,7 +36,7 @@ class PetAdaptionServices {
         return callBack(Constants.ADOPTABLE_PET_END_POINT + "/$petID")
     }
 
-    fun getSearchQuery(keyword: String): NetworkStatus<AdoptablePet> {
+    fun getSearchQuery(keyword: String): NetworkStatus<AdoptablePetResponse> {
         return callBack(Constants.SEARCH_END_POINT + keyword)
     }
 }

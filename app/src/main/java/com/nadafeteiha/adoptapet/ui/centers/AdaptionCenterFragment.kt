@@ -26,22 +26,26 @@ class AdaptionCenterFragment : BaseFragment<FragmentAdaptionCenterBinding>(),
     private lateinit var flow: Flow<NetworkStatus<AdoptionCenterResponse>>
 
     override fun setup() {
+        flowInitialization()
+        flowCollector(flow)
+    }
+
+    private fun flowInitialization() {
         flow = flow {
             emit(NetworkStatus.Loading())
             emit(petService.getAdoptionCenters())
         }.flowOn(Dispatchers.Default)
-        flowCollector(flow)
     }
 
     private fun flowCollector(flow: Flow<NetworkStatus<AdoptionCenterResponse>>) {
         lifecycleScope.launch {
             flow.collect { networkResult ->
-                checkNetworkResponse(networkResult)
+                changeUIDDependOnNetworkStatusResponse(networkResult)
             }
         }
     }
 
-    private fun checkNetworkResponse(status: NetworkStatus<AdoptionCenterResponse>) {
+    private fun changeUIDDependOnNetworkStatusResponse(status: NetworkStatus<AdoptionCenterResponse>) {
         when (status) {
             is NetworkStatus.Loading -> {
                 setLoadingUI()
@@ -50,19 +54,19 @@ class AdaptionCenterFragment : BaseFragment<FragmentAdaptionCenterBinding>(),
                 status.data?.let { setData(it.centers) }
             }
             is NetworkStatus.Failure -> {
-               requireActivity().showSnackBar(status.message)
+                requireActivity().showSnackBar(status.message)
             }
         }
     }
 
     private fun setData(centers: List<CenterDetails>) {
-        setVisibilityForSuccess()
+        setVisibilityWhenSuccess()
         binding.adaptionCenterRecycler.layoutManager = GridLayoutManager(requireContext(), 1)
         binding.adaptionCenterRecycler.adapter = adaptionCenterAdapter
         adaptionCenterAdapter.submitList(centers)
     }
 
-    private fun setVisibilityForSuccess() {
+    private fun setVisibilityWhenSuccess() {
         binding.adaptionCenterRecycler.visibility = View.VISIBLE
         binding.loadingPetLottie.visibility = View.GONE
     }
@@ -81,7 +85,7 @@ class AdaptionCenterFragment : BaseFragment<FragmentAdaptionCenterBinding>(),
     }
 
     override fun onMapClick(center: CenterDetails) {
-        requireContext().openMap(center.lat, center.lon, center.name ?: "")
+        requireContext().openMap(center.latitude, center.longitude, center.centerName ?: "")
     }
 
     override fun openAvailablePetClick(center: CenterDetails) {

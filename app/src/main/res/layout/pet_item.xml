@@ -32,7 +32,7 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pet_image"
-                petImage="@{petDetails.pic_url}"
+                petImage="@{petDetails.petPictureURL}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/default_margin"
@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
-                android:text="@{petDetails.name}"
+                android:text="@{petDetails.petName}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:text="@{petDetails.sex}"
+                android:text="@{petDetails.petSex}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/pet_name_text" />
@@ -73,7 +73,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:text="@{petDetails.species_breed.breed_name}"
+                android:text="@{petDetails.petSpeciesBreed.breedName}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/pet_sex_text" />
