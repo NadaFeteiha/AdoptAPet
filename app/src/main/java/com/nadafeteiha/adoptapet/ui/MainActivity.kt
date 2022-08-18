@@ -2,6 +2,7 @@ package com.nadafeteiha.adoptapet.ui
 
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,6 +25,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.adaptionCenterFragment
             )
         )
+    }
+
+    override fun start() {
+        installSplashScreen()
     }
 
     override fun setup() {

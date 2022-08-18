@@ -15,7 +15,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        start()
         super.onCreate(savedInstanceState)
         _binding = inflate(layoutInflater)
         setContentView(_binding.root)
@@ -23,5 +23,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     abstract fun setup()
+
+    abstract fun start()
 
 }

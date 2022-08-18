@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.nadafeteiha.adoptapet.base.BaseFragment
+import com.nadafeteiha.adoptapet.data.domain.PetDetails
 import com.nadafeteiha.adoptapet.databinding.FragmentPetDetailsBinding
 import com.nadafeteiha.adoptapet.util.openMap
 
@@ -14,14 +15,17 @@ class PetDetailsFragment : BaseFragment<FragmentPetDetailsBinding>() {
     private val arguments: PetDetailsFragmentArgs by navArgs()
 
     override fun setup() {
-        val pet = arguments.pet
+        setData(arguments.pet)
+    }
+
+    private fun setData(pet: PetDetails) {
         binding.apply {
             petDetails = pet
             goMapText.setOnClickListener {
                 requireContext().openMap(
-                    pet.center.lat,
-                    pet.center.lon,
-                    pet.center.name ?: ""
+                    pet.center.latitude,
+                    pet.center.longitude,
+                    pet.center.centerName ?: ""
                 )
             }
         }
