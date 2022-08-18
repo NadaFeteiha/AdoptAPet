@@ -11,7 +11,6 @@ data class PetDetails(
     val center: CenterDetails,
     val color: String?,
     val desc: String?,
-    val id: Int,
     val name: String?,
     val pic_url: String?,
     val sex: String?,

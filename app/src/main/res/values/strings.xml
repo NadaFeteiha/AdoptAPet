@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Pet Adaption</string>
-    <string name="pet_details">%s . %s . %s</string>
+    <string name="pet_sex">Sex</string>
+    <string name="pet_species">Species</string>
     <string name="female">Female</string>
     <string name="cat">Cat</string>
-
+    <string name="pet_kind">Kind</string>
 
     <string name="physical_characteristics">Physical Characteristics</string>
     <string name="breed">Breed</string>
@@ -12,11 +13,16 @@
     <string name="go_text">Go</string>
     <string name="origin">Origin</string>
     <string name="available_pet">See available pets</string>
+    <string name="search_text">Search</string>
+
+    <!--    titles-->
+    <string name="adaption_center_title">Adaption Centers</string>
+    <string name="available_pets_title">Available Pets</string>
+    <string name="pet_title">Pet Adaption</string>
 
     <!--    menu     -->
     <string name="pet_menu">Pets</string>
     <string name="center_menu">Centers</string>
-    <string name="species_menu">Pet Species</string>
     <string name="search_menu">Search</string>
 
 </resources>

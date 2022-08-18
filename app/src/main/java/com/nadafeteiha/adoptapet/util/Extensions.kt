@@ -1,11 +1,9 @@
 package com.nadafeteiha.adoptapet.util
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.View
-import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -37,17 +35,6 @@ fun Context.callPhoneCenter(phoneNumber: String) {
 }
 
 
-fun View.showSnackBar(message: String) {
-    Snackbar.make(this.findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
-}
-
-fun NavController.popBackStackAllInstances(destination: Int, inclusive: Boolean): Boolean {
-    var popped: Boolean
-    while (true) {
-        popped = popBackStack(destination, inclusive)
-        if (!popped) {
-            break
-        }
-    }
-    return popped
+fun Activity.showSnackBar(message: String) {
+    Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
 }

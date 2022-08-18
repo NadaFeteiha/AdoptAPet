@@ -50,7 +50,7 @@ class AdaptionCenterFragment : BaseFragment<FragmentAdaptionCenterBinding>(),
                 status.data?.let { setData(it.centers) }
             }
             is NetworkStatus.Failure -> {
-                requireView().showSnackBar(status.message)
+               requireActivity().showSnackBar(status.message)
             }
         }
     }

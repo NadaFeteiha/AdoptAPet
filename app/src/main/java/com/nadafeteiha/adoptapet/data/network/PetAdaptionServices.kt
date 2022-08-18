@@ -4,7 +4,6 @@ import com.google.gson.Gson
 import com.nadafeteiha.adoptapet.data.domain.AdoptablePet
 import com.nadafeteiha.adoptapet.data.domain.AdoptionCenterResponse
 import com.nadafeteiha.adoptapet.data.domain.PetDetails
-import com.nadafeteiha.adoptapet.data.domain.PetSpeciesResponse
 import com.nadafeteiha.adoptapet.util.Constants
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -33,11 +32,11 @@ class PetAdaptionServices {
         return callBack(Constants.ADOPTABLE_PET_END_POINT)
     }
 
-    fun getPetSpecies(): NetworkStatus<PetSpeciesResponse> {
-        return callBack(Constants.PET_SPECIES_END_POINT)
-    }
-
     fun getPetByID(petID: Int): NetworkStatus<PetDetails> {
         return callBack(Constants.ADOPTABLE_PET_END_POINT + "/$petID")
+    }
+
+    fun getSearchQuery(keyword: String): NetworkStatus<AdoptablePet> {
+        return callBack(Constants.SEARCH_END_POINT + keyword)
     }
 }

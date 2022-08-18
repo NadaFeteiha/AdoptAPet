@@ -7,6 +7,8 @@
 
         <import type="com.nadafeteiha.adoptapet.util.ExtensionsKt" />
 
+        <import type="android.view.View" />
+
         <variable
             name="petDetails"
             type="com.nadafeteiha.adoptapet.data.domain.PetDetails" />
@@ -131,6 +133,7 @@
                         android:drawablePadding="@dimen/small_padding"
                         android:gravity="center_vertical"
                         android:text="@{petDetails.age}"
+                        android:visibility="@{petDetails.age.empty? View.GONE : View.VISIBLE}"
                         app:drawableStartCompat="@drawable/age_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -146,6 +149,7 @@
                         android:drawablePadding="@dimen/small_padding"
                         android:gravity="center_vertical"
                         android:text="@{petDetails.sex}"
+                        android:visibility="@{petDetails.sex.empty? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/age_text" />
@@ -159,11 +163,26 @@
                         android:drawablePadding="@dimen/small_padding"
                         android:gravity="center_vertical"
                         android:text="@{petDetails.size_group}"
+                        android:visibility="@{petDetails.size_group.empty? View.GONE : View.VISIBLE}"
                         app:drawableStartCompat="@drawable/size_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/sex_text" />
 
+                    <TextView
+                        android:id="@+id/color_text"
+                        style="@style/TextBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:drawablePadding="@dimen/small_padding"
+                        android:gravity="center_vertical"
+                        android:text="@{petDetails.color}"
+                        android:visibility="@{petDetails.color == null? View.GONE : View.VISIBLE}"
+                        app:drawableStartCompat="@drawable/color_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/size_text" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -177,6 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_marginTop="@dimen/default_margin"
+                petDescriptionVisibility="@{petDetails.desc}"
                 app:cardBackgroundColor="?attr/colorOnPrimary"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -268,10 +288,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/default_margin"
+                        android:drawablePadding="@dimen/small_padding"
                         android:gravity="center"
                         android:text="@string/go_text"
                         app:drawableTopCompat="@drawable/map_icon"
-                        android:drawablePadding="@dimen/small_padding"
                         app:layout_constraintBottom_toBottomOf="@+id/center_location_text"
                         app:layout_constraintDimensionRatio="1:1"
                         app:layout_constraintEnd_toEndOf="parent"
