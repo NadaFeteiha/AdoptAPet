@@ -46,6 +46,7 @@
 
             <TextView
                 android:id="@+id/pet_name_text"
+                style="@style/TextHeadLine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
@@ -56,21 +57,69 @@
 
             <TextView
                 android:id="@+id/pet_type_text"
-                android:layout_width="0dp"
+                style="@style/TextBody"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{petDetails.species_breed.breed_name}"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/pet_kind"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/pet_name_text" />
 
             <TextView
-                android:id="@+id/pet_more_text"
+                android:id="@+id/pet_type_value_text"
+                style="@style/TextBodyBold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{@string/pet_details(petDetails.sex,petDetails.age,petDetails.size_group)}"
+                android:layout_marginStart="@dimen/extra_small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@{petDetails.species_breed.species_name}"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pet_type_text"
+                app:layout_constraintTop_toBottomOf="@+id/pet_name_text" />
+
+            <TextView
+                android:id="@+id/pet_species_text"
+                style="@style/TextBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@{@string/pet_species(petDetails.species_breed.breed_name)}"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/pet_type_text" />
+
+            <TextView
+                android:id="@+id/pet_species_value_text"
+                style="@style/TextBodyBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/extra_small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@{petDetails.species_breed.breed_name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pet_species_text"
+                app:layout_constraintTop_toBottomOf="@+id/pet_type_text" />
+
+            <TextView
+                android:id="@+id/pet_more_text"
+                style="@style/TextBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/pet_sex"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/pet_species_text" />
+
+            <TextView
+                android:id="@+id/pet_more_value_text"
+                style="@style/TextBodyBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/extra_small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@{petDetails.sex}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pet_more_text"
+                app:layout_constraintTop_toBottomOf="@+id/pet_species_text" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
