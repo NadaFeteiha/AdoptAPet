@@ -3,17 +3,18 @@ package com.nadafeteiha.adoptapet.ui.centers.availablepets
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.nadafeteiha.adoptapet.R
 import com.nadafeteiha.adoptapet.base.BaseFragment
+import com.nadafeteiha.adoptapet.data.domain.Pet
 import com.nadafeteiha.adoptapet.data.domain.PetDetails
 import com.nadafeteiha.adoptapet.data.network.NetworkStatus
 import com.nadafeteiha.adoptapet.databinding.FragmentPetBinding
 import com.nadafeteiha.adoptapet.ui.pet.PetAdapter
-import com.nadafeteiha.adoptapet.ui.pet.PetFragmentDirections
+import com.nadafeteiha.adoptapet.util.showSnackBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -30,28 +31,31 @@ class AvailablePetsFragment : BaseFragment<FragmentPetBinding>(),
     private val petAdapter: PetAdapter by lazy { PetAdapter(this) }
 
     override fun setup() {
-        val petsInCenter = arguments.center.pets
+        val petsInCenter = arguments.center.petList
+        petsInCenter?.let {
+            flowInitialization(petsInCenter)
+        } ?: requireActivity().showSnackBar(resources.getString(R.string.failure_message))
+        flowCollector(flow)
+    }
+
+    private fun flowInitialization(petsInCenter: List<Pet>) {
         flow = flow {
             emit(NetworkStatus.Loading())
-            petsInCenter?.let {
-                for (pet in petsInCenter) {
-                    emit(petService.getPetByID(pet.api_id))
-                }
-            } ?: emit(NetworkStatus.Failure("No Pets"))
+            for (pet in petsInCenter) {
+                emit(petService.getPetByID(pet.petID))
+            }
         }.flowOn(Dispatchers.Default)
-
-        flowCollector(flow)
     }
 
     private fun flowCollector(flow: Flow<NetworkStatus<PetDetails>>) {
         lifecycleScope.launch {
             flow.collect { networkResult ->
-                checkNetworkResponse(networkResult)
+                changeUIDDependOnNetworkStatusResponse(networkResult)
             }
         }
     }
 
-    private fun checkNetworkResponse(status: NetworkStatus<PetDetails>) {
+    private fun changeUIDDependOnNetworkStatusResponse(status: NetworkStatus<PetDetails>) {
         when (status) {
             is NetworkStatus.Loading -> {
                 setLoading()
@@ -59,22 +63,20 @@ class AvailablePetsFragment : BaseFragment<FragmentPetBinding>(),
             is NetworkStatus.Success -> {
                 status.data?.let { pet ->
                     if (this::petInCenter.isInitialized) {
-                        petInCenter.add(pet)
-                        updateData()
+                        updateData(pet)
                     } else {
                         setData(pet)
                     }
-
                 }
             }
             is NetworkStatus.Failure -> {
-                Toast.makeText(context, status.message, Toast.LENGTH_LONG).show()
+                requireActivity().showSnackBar(status.message)
             }
         }
     }
 
     private fun setData(pet: PetDetails) {
-        setVisibilityForSuccess()
+        setVisibilityWhenSuccess()
         petInCenter = mutableListOf()
         petInCenter.add(pet)
         binding.petRecycler.layoutManager = GridLayoutManager(requireContext(), 1)
@@ -87,12 +89,13 @@ class AvailablePetsFragment : BaseFragment<FragmentPetBinding>(),
         binding.petRecycler.visibility = View.GONE
     }
 
-    private fun setVisibilityForSuccess() {
+    private fun setVisibilityWhenSuccess() {
         binding.petRecycler.visibility = View.VISIBLE
         binding.loadingPetLottie.visibility = View.GONE
     }
 
-    private fun updateData() {
+    private fun updateData(pet: PetDetails) {
+        petInCenter.add(pet)
         petAdapter.submitList(petInCenter)
     }
 

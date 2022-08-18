@@ -14,6 +14,7 @@
     <string name="origin">Origin</string>
     <string name="available_pet">See available pets</string>
     <string name="search_text">Search</string>
+    <string name="failure_message">No Pets</string>
 
     <!--    titles-->
     <string name="adaption_center_title">Adaption Centers</string>
