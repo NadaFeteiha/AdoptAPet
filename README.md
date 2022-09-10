@@ -6,4 +6,4 @@
 - OKHTTP
 
 ## :camera_flash: Video
-[YouTube](https://www.youtube.com/watch?v=xYOhdG6spIM)
+[YouTube](https://www.youtube.com/watch?v=cuUcAsC0Kbw&t=1s)
