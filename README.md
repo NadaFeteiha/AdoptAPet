@@ -7,8 +7,3 @@
 
 ## :camera_flash: Video
 [YouTube](https://www.youtube.com/watch?v=xYOhdG6spIM)
-
-
-## :rocket: Resources 
-- [kotlin course](https://www.youtube.com/playlist?list=PLEPx7DrqAqKB01JqOEbJBBfWdPrqmps7M)
-- [Git course](https://www.youtube.com/playlist?list=PLEPx7DrqAqKASKaTskYW3vbreozaltD99)
